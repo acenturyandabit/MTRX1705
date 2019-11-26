@@ -1,0 +1,68 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>Do you want to build a <s>Snowman</s> State machine? </h1>
+    <h1>Step 1: Define requirements.</h1>
+    <h2>Inputs</h2>
+    <h2>Outputs</h2>
+    <h2>Requirements</h2>
+    <h1>Step 2: System level design</h1>
+    <h2>State diagram</h2>
+    <h2>Next state logic</h2>
+    <h2>Output logic</h2>
+    <h2>Modules, connections, interfaces</h2>
+    <h1>Step 3: Detailed design</h1>
+    <h2>Next state logic</h2>
+    <h2>Output logic</h2>
+    <h2>I/O</h2>
+    <h1>Step 4: Testing</h1>
+    <h2>Detailed tests</h2>
+    <p>Click the buttons above to run some detailed tests!</p>
+    <h2>Integration tests</h2>
+    <h2>Acceptance tests</h2>
+    <script>
+
+        function sampleRandom(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+        //Possible inputs
+        let inputs = {
+            clock: {
+
+            }
+        }
+        //Possible outputs
+        let outputs = {
+            led: {
+
+            }
+        }
+        let stateMachine = {};
+        function populateRandom(obj, prop, sourceObj, n) {
+            let source;
+            if (!sourceObj.length) {
+                //sourceObj is an object not an array
+                source = Object.keys(sourceObj);
+            } else {
+                source = sourceObj;
+            }
+            obj[prop] = [];
+            for (let i = 0; i < n; i++) {
+                obj[prop].push(sampleRandom(source));
+            }
+        }
+        populateRandom(stateMachine, "inputs", inputs, 3);
+        populateRandom(stateMachine, "outputs", outputs, 3);
+        //mealy or not? no for now
+        //so inputs only cause state transitions
+        //select some state machine inputs
+        populateRandom(stateMachine, "stateInputs", stateMachine.inputs, 3);
+        
+    </script>
+</body>
+
+</html>

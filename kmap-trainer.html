@@ -1,0 +1,55 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <script>
+        function htmlwrap(html, el) {
+            let d = document.createElement(el || 'div');
+            d.innerHTML = html;
+            if (d.children.length == 1) return d.children[0];
+            else return d;
+        }
+
+        let nInputs = 3;
+        let tableRows = [
+            []
+        ];
+        for (let i = 0; i < nInputs + 1; i++) {
+            tableRows[0][i] = String.fromCharCode("a".charCodeAt(0) + i);
+        }
+        for (let i = 0; i < 2 ** nInputs; i++) {
+            let newRow = [];
+            for (let c = 0; c < nInputs + 1; c++) {
+                newRow.push(0);
+                if (c < nInputs) newRow[c] = 1 * ((i & (1 << (nInputs - c - 1))) > 0);
+                else newRow[c] = 1 * (Math.random() > 0.5);
+            }
+            tableRows.push(newRow);
+        }
+        //print it out
+        let htmlout = `<table>`;
+        for (let i = 0; i < tableRows.length; i++) {
+            let r = `<tr>`;
+            tableRows[i].forEach((v) => {
+                r += `<td>${v}</td>`;
+            })
+            r += `</tr>`;
+            htmlout += r;
+        }
+        htmlout += `</table>`;
+        console.log(tableRows);
+        document.body.appendChild(htmlwrap(htmlout));
+    </script>
+    <p>Try the following things:</p>
+    <ul>
+        <li>Reduce the logic table using SOP form.</li>
+        <li>Reduce the logic table using POS form.</li>
+        <li>Reduce the logic table using a K map.</li>
+    </ul>
+    <p>Refresh the page to generate a new logic table.</p>
+</body>
+
+</html>
